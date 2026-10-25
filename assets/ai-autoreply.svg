@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-label="How AI auto-reply works">
+  <defs>
+    <linearGradient id="ai" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6C5CE7"/><stop offset="1" stop-color="#a855f7"/></linearGradient>
+    <marker id="m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#8175EA"/></marker>
+  </defs>
+  <rect width="1200" height="420" rx="26" fill="#1e1b4b"/>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="40" y="58" font-size="26" font-weight="800" fill="#ffffff">AI auto-reply, driven by your own prompt</text>
+    <text x="40" y="88" font-size="16" fill="#c7c3ee">Checked every 5 minutes · only new unread Inbox mail · daily limit · full activity log</text>
+
+    <g transform="translate(40 130)">
+      <rect width="190" height="200" rx="18" fill="#2b2770" stroke="#4b45a8"/>
+      <rect x="55" y="28" width="80" height="56" rx="8" fill="#ffffff"/>
+      <path d="M59 32 L95 60 L131 32" stroke="#6C5CE7" stroke-width="5" fill="none" stroke-linejoin="round"/>
+      <circle cx="132" cy="30" r="12" fill="#ef4444"/>
+      <text x="95" y="122" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">New email</text>
+      <text x="95" y="148" text-anchor="middle" font-size="13.5" fill="#c7c3ee">arrives in Inbox</text>
+      <text x="95" y="168" text-anchor="middle" font-size="13.5" fill="#c7c3ee">after you turned it on</text>
+    </g>
+    <g transform="translate(270 130)">
+      <rect width="190" height="200" rx="18" fill="#2b2770" stroke="#4b45a8"/>
+      <path d="M60 30 h70 l-26 30 v26 l-18 -10 v-16 Z" fill="#a5b4fc"/>
+      <text x="95" y="122" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">Filters</text>
+      <text x="95" y="148" text-anchor="middle" font-size="13.5" fill="#c7c3ee">Focused inbox only</text>
+      <text x="95" y="168" text-anchor="middle" font-size="13.5" fill="#c7c3ee">skip no-reply &amp; newsletters</text>
+    </g>
+    <g transform="translate(500 120)">
+      <rect width="220" height="220" rx="20" fill="url(#ai)"/>
+      <path d="M110 30 l9 23 l23 9 l-23 9 l-9 23 l-9 -23 l-23 -9 l23 -9 Z" fill="#ffffff"/>
+      <text x="110" y="132" text-anchor="middle" font-size="19" font-weight="800" fill="#ffffff">Maylo AI writes</text>
+      <text x="110" y="158" text-anchor="middle" font-size="13.5" fill="#f3e8ff">using YOUR prompt</text>
+      <text x="110" y="178" text-anchor="middle" font-size="13.5" fill="#f3e8ff">+ signature, same language</text>
+      <text x="110" y="198" text-anchor="middle" font-size="13.5" fill="#f3e8ff">“NO_REPLY” = skip</text>
+    </g>
+    <g transform="translate(760 108)">
+      <rect width="190" height="112" rx="18" fill="#3b2f0a" stroke="#f59e0b"/>
+      <text x="95" y="46" text-anchor="middle" font-size="18" font-weight="800" fill="#fde68a">Draft mode</text>
+      <text x="95" y="72" text-anchor="middle" font-size="13.5" fill="#fcd34d">saved in Drafts</text>
+      <text x="95" y="92" text-anchor="middle" font-size="13.5" fill="#fcd34d">you review &amp; send</text>
+    </g>
+    <g transform="translate(760 240)">
+      <rect width="190" height="112" rx="18" fill="#063b2b" stroke="#10b981"/>
+      <text x="95" y="46" text-anchor="middle" font-size="18" font-weight="800" fill="#a7f3d0">Send mode</text>
+      <text x="95" y="72" text-anchor="middle" font-size="13.5" fill="#6ee7b7">threaded reply sent</text>
+      <text x="95" y="92" text-anchor="middle" font-size="13.5" fill="#6ee7b7">original marked read</text>
+    </g>
+    <g transform="translate(990 130)">
+      <rect width="170" height="200" rx="18" fill="#2b2770" stroke="#4b45a8"/>
+      <rect x="40" y="30" width="90" height="10" rx="5" fill="#a5b4fc"/>
+      <rect x="40" y="50" width="70" height="10" rx="5" fill="#6366f1"/>
+      <rect x="40" y="70" width="80" height="10" rx="5" fill="#a5b4fc"/>
+      <text x="85" y="122" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">Activity log</text>
+      <text x="85" y="148" text-anchor="middle" font-size="13.5" fill="#c7c3ee">sent · draft ·</text>
+      <text x="85" y="168" text-anchor="middle" font-size="13.5" fill="#c7c3ee">skipped · error</text>
+    </g>
+  </g>
+  <g stroke="#8175EA" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M232 230 L264 230" marker-end="url(#m)"/>
+    <path d="M462 230 L494 230" marker-end="url(#m)"/>
+    <path d="M722 210 C740 200 742 170 754 166" marker-end="url(#m)"/>
+    <path d="M722 250 C740 262 742 292 754 296" marker-end="url(#m)"/>
+    <path d="M952 166 C970 170 972 200 984 210" marker-end="url(#m)"/>
+    <path d="M952 296 C970 292 972 262 984 250" marker-end="url(#m)"/>
+  </g>
+</svg>

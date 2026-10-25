@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-label="What a user does to connect their mailbox">
+  <defs>
+    <linearGradient id="c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6C5CE7"/><stop offset="1" stop-color="#5E8FF5"/></linearGradient>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#a5b4fc"/></marker>
+  </defs>
+  <rect width="1200" height="360" rx="26" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="40" y="56" font-size="26" font-weight="800" fill="#302A44">Connecting a mailbox takes one click</text>
+    <text x="40" y="86" font-size="16" fill="#6b6680">Each WordPress user connects their own Outlook account. Nobody else can read it.</text>
+
+    <g transform="translate(40 120)">
+      <rect width="250" height="200" rx="20" fill="#f7f6ff"/>
+      <circle cx="125" cy="50" r="30" fill="url(#c)"/>
+      <path d="M110 50 h30 M125 35 v30" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+      <text x="125" y="112" text-anchor="middle" font-size="18" font-weight="800" fill="#302A44">1 · Click Connect</text>
+      <text x="125" y="140" text-anchor="middle" font-size="14" fill="#5b5470">“Connect Outlook account”</text>
+      <text x="125" y="160" text-anchor="middle" font-size="14" fill="#5b5470">on the mail page</text>
+    </g>
+    <g transform="translate(330 120)">
+      <rect width="250" height="200" rx="20" fill="#f0f7ff"/>
+      <circle cx="125" cy="50" r="30" fill="#0f6cbd"/>
+      <circle cx="125" cy="44" r="9" fill="#fff"/><path d="M108 66 a17 13 0 0 1 34 0" fill="#fff"/>
+      <text x="125" y="112" text-anchor="middle" font-size="18" font-weight="800" fill="#0f3a6b">2 · Pick account</text>
+      <text x="125" y="140" text-anchor="middle" font-size="14" fill="#4a6385">Sign in at Microsoft and</text>
+      <text x="125" y="160" text-anchor="middle" font-size="14" fill="#4a6385">choose the mailbox</text>
+    </g>
+    <g transform="translate(620 120)">
+      <rect width="250" height="200" rx="20" fill="#f0f7ff"/>
+      <circle cx="125" cy="50" r="30" fill="#0f6cbd"/>
+      <path d="M111 50 l10 10 l18 -20" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="125" y="112" text-anchor="middle" font-size="18" font-weight="800" fill="#0f3a6b">3 · Accept</text>
+      <text x="125" y="140" text-anchor="middle" font-size="14" fill="#4a6385">Approve read, send and</text>
+      <text x="125" y="160" text-anchor="middle" font-size="14" fill="#4a6385">profile permissions</text>
+    </g>
+    <g transform="translate(910 120)">
+      <rect width="250" height="200" rx="20" fill="#ecfdf5"/>
+      <circle cx="125" cy="50" r="30" fill="#10b981"/>
+      <rect x="108" y="38" width="34" height="24" rx="4" fill="#fff"/><path d="M110 40 L125 52 L140 40" stroke="#10b981" stroke-width="3" fill="none"/>
+      <text x="125" y="112" text-anchor="middle" font-size="18" font-weight="800" fill="#065f46">4 · Inbox loads</text>
+      <text x="125" y="140" text-anchor="middle" font-size="14" fill="#047857">Back on your site with</text>
+      <text x="125" y="160" text-anchor="middle" font-size="14" fill="#047857">your live mailbox</text>
+    </g>
+  </g>
+  <g stroke="#a5b4fc" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M292 220 L326 220" marker-end="url(#a)"/>
+    <path d="M582 220 L616 220" marker-end="url(#a)"/>
+    <path d="M872 220 L906 220" marker-end="url(#a)"/>
+  </g>
+</svg>

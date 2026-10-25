@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" role="img" aria-label="Six steps to register the app in Microsoft Entra">
+  <defs>
+    <linearGradient id="n" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6C5CE7"/><stop offset="1" stop-color="#5E8FF5"/></linearGradient>
+  </defs>
+  <rect width="1200" height="640" rx="26" fill="#f7f6ff"/>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="40" y="58" font-size="26" font-weight="800" fill="#302A44">Microsoft Entra (Azure) — app registration in 6 steps</text>
+    <text x="40" y="88" font-size="16" fill="#6b6680">entra.microsoft.com → Identity → Applications → App registrations</text>
+
+    <g transform="translate(40 120)">
+      <rect width="355" height="230" rx="20" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="url(#n)"/><text x="44" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">1</text>
+      <text x="82" y="52" font-size="19" font-weight="800" fill="#302A44">New registration</text>
+      <text x="26" y="98" font-size="14.5" fill="#5b5470">Click “+ New registration” and</text>
+      <text x="26" y="120" font-size="14.5" fill="#5b5470">give the app a name, e.g.</text>
+      <rect x="26" y="138" width="300" height="40" rx="10" fill="#eef2ff" stroke="#d6d6f3"/>
+      <text x="40" y="164" font-size="15" font-weight="700" fill="#4c3fb8">My Site Mail</text>
+      <text x="26" y="206" font-size="13" fill="#8a85a0">Users see this name on the consent screen.</text>
+    </g>
+
+    <g transform="translate(422 120)">
+      <rect width="355" height="230" rx="20" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="url(#n)"/><text x="44" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">2</text>
+      <text x="82" y="52" font-size="19" font-weight="800" fill="#302A44">Account types</text>
+      <rect x="26" y="80" width="300" height="56" rx="10" fill="#eef2ff" stroke="#6C5CE7" stroke-width="2"/>
+      <circle cx="46" cy="108" r="8" fill="#6C5CE7"/>
+      <text x="62" y="103" font-size="13.5" font-weight="700" fill="#302A44">Any organizational directory</text>
+      <text x="62" y="122" font-size="13.5" font-weight="700" fill="#302A44">and personal Microsoft accounts</text>
+      <text x="26" y="166" font-size="13.5" fill="#5b5470">Works for Outlook.com, Hotmail, Live</text>
+      <text x="26" y="186" font-size="13.5" fill="#5b5470">and Microsoft 365 work mailboxes.</text>
+      <text x="26" y="210" font-size="13" fill="#8a85a0">Use tenant “common” in the plugin.</text>
+    </g>
+
+    <g transform="translate(804 120)">
+      <rect width="355" height="230" rx="20" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="url(#n)"/><text x="44" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">3</text>
+      <text x="82" y="52" font-size="19" font-weight="800" fill="#302A44">Redirect URI (Web)</text>
+      <text x="26" y="98" font-size="14.5" fill="#5b5470">Platform: <tspan font-weight="800" fill="#302A44">Web</tspan>. Paste the URI shown in</text>
+      <text x="26" y="120" font-size="14.5" fill="#5b5470">Settings → Outlook 369:</text>
+      <rect x="26" y="138" width="300" height="40" rx="10" fill="#1e1b4b"/>
+      <text x="40" y="164" font-size="13.5" font-weight="700" fill="#a5f3fc">https://site.com/?outlook369=callback</text>
+      <text x="26" y="206" font-size="13" fill="#8a85a0">Must match exactly, character by character.</text>
+    </g>
+
+    <g transform="translate(40 378)">
+      <rect width="355" height="230" rx="20" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="url(#n)"/><text x="44" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">4</text>
+      <text x="82" y="52" font-size="19" font-weight="800" fill="#302A44">Client secret</text>
+      <text x="26" y="98" font-size="14.5" fill="#5b5470">Certificates &amp; secrets → New client</text>
+      <text x="26" y="120" font-size="14.5" fill="#5b5470">secret. Copy the <tspan font-weight="800" fill="#302A44">Value</tspan> column:</text>
+      <rect x="26" y="138" width="145" height="40" rx="10" fill="#d1fae5" stroke="#10b981"/>
+      <text x="98" y="164" text-anchor="middle" font-size="14" font-weight="800" fill="#047857">Value ✓</text>
+      <rect x="181" y="138" width="145" height="40" rx="10" fill="#fee2e2" stroke="#ef4444"/>
+      <text x="253" y="164" text-anchor="middle" font-size="14" font-weight="800" fill="#b91c1c">Secret ID ✗</text>
+      <text x="26" y="206" font-size="13" fill="#8a85a0">It is shown only once — copy it right away.</text>
+    </g>
+
+    <g transform="translate(422 378)">
+      <rect width="355" height="230" rx="20" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="url(#n)"/><text x="44" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">5</text>
+      <text x="82" y="52" font-size="19" font-weight="800" fill="#302A44">API permissions</text>
+      <text x="26" y="94" font-size="14" fill="#5b5470">Microsoft Graph → Delegated:</text>
+      <g font-size="13.5" font-weight="700">
+        <rect x="26" y="108" width="140" height="32" rx="16" fill="#eef2ff"/><text x="96" y="129" text-anchor="middle" fill="#4c3fb8">User.Read</text>
+        <rect x="176" y="108" width="150" height="32" rx="16" fill="#eef2ff"/><text x="251" y="129" text-anchor="middle" fill="#4c3fb8">Mail.ReadWrite</text>
+        <rect x="26" y="148" width="140" height="32" rx="16" fill="#eef2ff"/><text x="96" y="169" text-anchor="middle" fill="#4c3fb8">Mail.Send</text>
+        <rect x="176" y="148" width="150" height="32" rx="16" fill="#eef2ff"/><text x="251" y="169" text-anchor="middle" fill="#4c3fb8">offline_access</text>
+      </g>
+      <text x="26" y="208" font-size="13" fill="#8a85a0">Then “Grant admin consent” (work tenants).</text>
+    </g>
+
+    <g transform="translate(804 378)">
+      <rect width="355" height="230" rx="20" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="url(#n)"/><text x="44" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">6</text>
+      <text x="82" y="52" font-size="19" font-weight="800" fill="#302A44">Copy the client ID</text>
+      <text x="26" y="98" font-size="14.5" fill="#5b5470">Overview → Application (client) ID</text>
+      <rect x="26" y="116" width="300" height="40" rx="10" fill="#eef2ff" stroke="#d6d6f3"/>
+      <text x="40" y="142" font-size="13.5" font-weight="700" fill="#4c3fb8">00000000-0000-0000-0000-000000000000</text>
+      <text x="26" y="186" font-size="14" fill="#5b5470">Paste it with the secret into</text>
+      <text x="26" y="206" font-size="14" font-weight="800" fill="#302A44">WordPress → Settings → Outlook 369</text>
+    </g>
+  </g>
+</svg>

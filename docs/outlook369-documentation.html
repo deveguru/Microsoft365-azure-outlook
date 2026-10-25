@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outlook 369 Documentation</title>
+<meta name="description" content="Complete guide to connecting Outlook and Microsoft 365 mailboxes to WordPress with Outlook 369, including AI replies, auto-reply and Maylo AI chat tools.">
+<style>
+:root{
+  --primary:#6C5CE7;--primary-2:#5E8FF5;--primary-soft:#EEEBFF;--ms:#0f6cbd;
+  --bg:#f7f6fb;--surface:#ffffff;--surface-2:#f3f1fa;--text:#2b2740;--muted:#6b6680;--border:#e4e1ee;
+  --ok:#047857;--ok-bg:#d1fae5;--warn:#92400e;--warn-bg:#fef3c7;--err:#b91c1c;--err-bg:#fee2e2;--info:#3730a3;--info-bg:#e0e7ff;
+  --code-bg:#1e1b4b;--code-text:#e0e7ff;
+  --radius:16px;--shadow:0 10px 30px rgba(43,39,64,.07);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121022;--surface:#1b1832;--surface-2:#221f3d;--text:#ecebf7;--muted:#a7a3c2;--border:#2f2b52;--primary-soft:#2a2550;
+    --ok-bg:#073b2c;--ok:#6ee7b7;--warn-bg:#3b2a07;--warn:#fcd34d;--err-bg:#3f1414;--err:#fca5a5;--info-bg:#1f2457;--info:#c7d2fe;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121022;--surface:#1b1832;--surface-2:#221f3d;--text:#ecebf7;--muted:#a7a3c2;--border:#2f2b52;--primary-soft:#2a2550;
+  --ok-bg:#073b2c;--ok:#6ee7b7;--warn-bg:#3b2a07;--warn:#fcd34d;--err-bg:#3f1414;--err:#fca5a5;--info-bg:#1f2457;--info:#c7d2fe;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 "Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+.layout{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh}
+nav.toc{position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 20px;background:var(--surface);border-right:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.brand-mark{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:grid;place-items:center;color:#fff;font-weight:800}
+.brand b{display:block;font-size:17px}
+.brand small{color:var(--muted);font-size:12px}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:t}
+.toc li a{display:flex;gap:10px;padding:8px 10px;border-radius:10px;color:var(--text);font-size:14.5px;font-weight:600}
+.toc li a:hover{background:var(--primary-soft);text-decoration:none}
+.toc li a.active{background:var(--primary-soft);color:var(--primary)}
+.toc li a span{width:22px;text-align:center}
+.toc-actions{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
+button.pill{border:1px solid var(--border);background:var(--surface-2);color:var(--text);border-radius:999px;padding:8px 14px;font:600 13px inherit;cursor:pointer}
+button.pill:hover{border-color:var(--primary)}
+main{padding:32px clamp(16px,4vw,56px) 60px;max-width:1120px;width:100%}
+.hero img,.figure img,.figure svg{display:block;width:100%;height:auto;border-radius:22px}
+.hero{margin-bottom:26px}
+.lead{font-size:19px;color:var(--muted);max-width:820px}
+section{margin:46px 0}
+h2{font-size:28px;line-height:1.25;margin:0 0 14px;display:flex;gap:12px;align-items:center}
+h2 .num{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;font-size:17px}
+h3{font-size:19px;margin:24px 0 8px}
+p{margin:0 0 14px}
+.figure{margin:20px 0;box-shadow:var(--shadow);border-radius:22px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:18px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.card .ic{font-size:26px}
+.card h4{margin:6px 0 4px;font-size:16.5px}
+.card p{margin:0;color:var(--muted);font-size:14.5px}
+table{width:100%;border-collapse:separate;border-spacing:0;margin:16px 0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:14.5px}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+th{background:var(--surface-2);font-weight:700}
+tr:last-child td{border-bottom:0}
+.table-wrap{overflow-x:auto}
+code{font-family:Consolas,"SFMono-Regular",Menlo,monospace;font-size:.92em;background:var(--primary-soft);padding:1px 6px;border-radius:6px}
+pre{background:var(--code-bg);color:var(--code-text);padding:16px 18px;border-radius:14px;overflow-x:auto;font-size:13.5px;line-height:1.6;position:relative}
+pre code{background:none;padding:0;color:inherit}
+.copy{position:absolute;top:10px;right:10px;border:0;border-radius:8px;background:rgba(255,255,255,.14);color:#fff;font:600 12px inherit;padding:5px 10px;cursor:pointer}
+.callout{border-radius:14px;padding:14px 16px;margin:16px 0;border-left:5px solid;font-size:15px}
+.callout b{display:block;margin-bottom:2px}
+.callout.info{background:var(--info-bg);border-color:#6366f1;color:var(--info)}
+.callout.warn{background:var(--warn-bg);border-color:#f59e0b;color:var(--warn)}
+.callout.err{background:var(--err-bg);border-color:#ef4444;color:var(--err)}
+.callout.ok{background:var(--ok-bg);border-color:#10b981;color:var(--ok)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:14px 0}
+.steps li{position:relative;padding:10px 0 10px 50px;border-bottom:1px dashed var(--border)}
+.steps li:last-child{border-bottom:0}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:10px;width:34px;height:34px;border-radius:10px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;font-weight:800}
+.tag{display:inline-block;padding:2px 9px;border-radius:999px;background:var(--primary-soft);color:var(--primary);font-size:12.5px;font-weight:700;margin:2px 4px 2px 0}
+details{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 16px;margin:10px 0}
+summary{cursor:pointer;font-weight:700}
+.credits{margin-top:60px;text-align:center}
+.credits .figure{box-shadow:none}
+.credits p{font-weight:700;margin-top:14px}
+.menu-btn{display:none}
+@media (max-width:960px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  nav.toc{position:fixed;inset:0 auto 0 0;width:min(300px,86vw);z-index:20;transform:translateX(-105%);transition:transform .25s ease;box-shadow:0 0 40px rgba(0,0,0,.25)}
+  nav.toc.open{transform:none}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;left:14px;z-index:30;border:0;border-radius:12px;background:var(--primary);color:#fff;padding:10px 14px;font:700 14px inherit;box-shadow:var(--shadow)}
+  main{padding-top:70px}
+  h2{font-size:23px}
+}
+@media print{
+  nav.toc,.menu-btn,.copy,.toc-actions{display:none!important}
+  .layout{display:block}
+  main{max-width:none;padding:0}
+  section{break-inside:avoid-page}
+  details{border:0;padding:0}
+  details > *{display:block}
+  .figure,.card,table{box-shadow:none}
+  body{background:#fff;color:#000}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" type="button" id="menuBtn">☰ Contents</button>
+<div class="layout">
+<nav class="toc" id="toc">
+  <div class="brand"><div class="brand-mark">369</div><div><b>Outlook 369</b><small>Documentation · v1.1.0</small></div></div>
+  <ol>
+    <li><a href="#overview"><span>✨</span>Overview</a></li>
+    <li><a href="#how"><span>🧭</span>How it works</a></li>
+    <li><a href="#requirements"><span>✅</span>Before you start</a></li>
+    <li><a href="#azure"><span>☁️</span>Step 1 · Azure / Entra</a></li>
+    <li><a href="#wordpress"><span>⚙️</span>Step 2 · WordPress</a></li>
+    <li><a href="#connect"><span>📬</span>Step 3 · Connect a mailbox</a></li>
+    <li><a href="#mailapp"><span>🗂️</span>Using the mail app</a></li>
+    <li><a href="#ai"><span>🤖</span>AI replies &amp; auto-reply</a></li>
+    <li><a href="#maylo"><span>💬</span>Maylo AI chat</a></li>
+    <li><a href="#security"><span>🔐</span>Security &amp; privacy</a></li>
+    <li><a href="#troubleshooting"><span>🩺</span>Troubleshooting</a></li>
+    <li><a href="#faq"><span>❓</span>FAQ</a></li>
+    <li><a href="#developers"><span>🧑‍💻</span>For developers</a></li>
+  </ol>
+  <div class="toc-actions">
+    <button class="pill" type="button" onclick="window.print()">🖨️ Print / PDF</button>
+    <button class="pill" type="button" id="themeBtn">🌓 Theme</button>
+  </div>
+</nav>
+
+<main>
+<div class="hero"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" role="img" aria-label="Outlook 369 — connect Outlook and Microsoft 365 mailboxes to WordPress">
+  <defs>
+    <linearGradient id="banner_bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a1f6e"/>
+      <stop offset="0.55" stop-color="#4b3bc4"/>
+      <stop offset="1" stop-color="#2f6fe0"/>
+    </linearGradient>
+    <linearGradient id="banner_card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.06"/>
+    </linearGradient>
+    <linearGradient id="banner_env" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#dfe6ff"/>
+    </linearGradient>
+    <radialGradient id="banner_glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#8fb4ff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#8fb4ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="420" rx="28" fill="url(#banner_bg)"/>
+  <circle cx="1040" cy="200" r="230" fill="url(#banner_glow)"/>
+  <g opacity="0.12" stroke="#ffffff" fill="none">
+    <circle cx="1040" cy="200" r="150"/>
+    <circle cx="1040" cy="200" r="200"/>
+    <circle cx="1040" cy="200" r="250"/>
+  </g>
+  <g transform="translate(905 92)">
+    <rect x="0" y="0" width="270" height="190" rx="22" fill="url(#banner_env)"/>
+    <path d="M14 22 L135 112 L256 22" fill="none" stroke="#6C5CE7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="0" y="0" width="270" height="190" rx="22" fill="none" stroke="#c9d3ff" stroke-width="3"/>
+    <g transform="translate(206 128)">
+      <circle r="44" fill="#6C5CE7"/>
+      <path d="M0 -24 L6 -6 L24 0 L6 6 L0 24 L-6 6 L-24 0 L-6 -6 Z" fill="#ffffff"/>
+    </g>
+  </g>
+  <g transform="translate(870 300)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">
+    <rect x="0" y="0" width="150" height="38" rx="19" fill="#ffffff" fill-opacity="0.16" stroke="#ffffff" stroke-opacity="0.35"/>
+    <text x="75" y="25" text-anchor="middle">Microsoft Graph</text>
+    <rect x="166" y="0" width="160" height="38" rx="19" fill="#ffffff" fill-opacity="0.16" stroke="#ffffff" stroke-opacity="0.35"/>
+    <text x="246" y="25" text-anchor="middle">OAuth 2.0 + PKCE</text>
+  </g>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" fill="#ffffff">
+    <text x="72" y="96" font-size="18" font-weight="700" letter-spacing="3" fill-opacity="0.8">WORDPRESS PLUGIN · v1.1.0</text>
+    <text x="70" y="176" font-size="76" font-weight="800">Outlook 369</text>
+    <text x="72" y="228" font-size="27" font-weight="600" fill-opacity="0.95">Every user's own Outlook / Microsoft 365 mailbox,</text>
+    <text x="72" y="264" font-size="27" font-weight="600" fill-opacity="0.95">inside your WordPress site — with AI replies.</text>
+  </g>
+  <g transform="translate(72 310)" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#2a1f6e">
+    <rect x="0" y="0" width="150" height="40" rx="20" fill="#ffffff"/>
+    <text x="75" y="26" text-anchor="middle">Read · Send · Reply</text>
+    <rect x="164" y="0" width="150" height="40" rx="20" fill="#ffffff"/>
+    <text x="239" y="26" text-anchor="middle">AI auto-reply</text>
+    <rect x="328" y="0" width="170" height="40" rx="20" fill="#ffffff"/>
+    <text x="413" y="26" text-anchor="middle">AES-256-GCM tokens</text>
+    <rect x="512" y="0" width="150" height="40" rx="20" fill="#ffffff"/>
+    <text x="587" y="26" text-anchor="middle">Maylo AI chat</text>
+  </g>
+</svg>
+</div>
+<p class="lead">Outlook 369 lets every user of your WordPress site connect <b>their own</b> Outlook.com or Microsoft 365 mailbox, read and send email from your site, and let AI draft or send replies using a prompt they write. This guide takes you from zero to a working inbox in about ten minutes.</p>
+
+<section id="overview">
+  <h2><span class="num">✨</span>Overview</h2>
+  <div class="cards">
+    <div class="card"><div class="ic">📬</div><h4>A full mail app</h4><p>Folders, search, read, threaded replies, forward, flag, archive, delete and attachments, inside any page with <code>[outlook369]</code>.</p></div>
+    <div class="card"><div class="ic">👤</div><h4>One mailbox per user</h4><p>Each WordPress user connects their own Microsoft account. Tokens are encrypted per user.</p></div>
+    <div class="card"><div class="ic">🤖</div><h4>AI that writes like you</h4><p>Draft a reply with one click, or let auto-reply answer new mail every 5 minutes with your prompt.</p></div>
+    <div class="card"><div class="ic">💬</div><h4>Talk to your inbox</h4><p>With Maylo AI: “what new emails do I have?”, summaries, replies and new emails from the chat, even by voice.</p></div>
+    <div class="card"><div class="ic">🛡️</div><h4>Private by design</h4><p>Mail is fetched live from Microsoft and never stored in WordPress.</p></div>
+    <div class="card"><div class="ic">🩺</div><h4>Clear diagnostics</h4><p>Every connection attempt is logged with Microsoft's exact answer.</p></div>
+  </div>
+</section>
+
+<section id="how">
+  <h2><span class="num">🧭</span>How it works</h2>
+  <div class="figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="How Outlook 369 connects WordPress to Microsoft 365">
+  <defs>
+    <linearGradient id="architecture_g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6C5CE7"/><stop offset="1" stop-color="#5E8FF5"/></linearGradient>
+    <linearGradient id="architecture_g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f6cbd"/><stop offset="1" stop-color="#2899f5"/></linearGradient>
+    <marker id="architecture_arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#6C5CE7"/></marker>
+    <marker id="architecture_arrb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#0f6cbd"/></marker>
+  </defs>
+  <rect width="1200" height="520" rx="26" fill="#f7f6ff"/>
+  <text x="40" y="58" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="26" font-weight="800" fill="#302A44">How it fits together</text>
+  <text x="40" y="88" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" fill="#6b6680">Mail is read live from Microsoft and never copied into WordPress. Only encrypted sign-in tokens are stored.</text>
+
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <g transform="translate(40 140)">
+      <rect width="210" height="300" rx="20" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+      <rect x="20" y="22" width="170" height="110" rx="12" fill="#eef2ff"/>
+      <rect x="34" y="38" width="142" height="12" rx="6" fill="#c7d2fe"/>
+      <rect x="34" y="60" width="100" height="10" rx="5" fill="#dfe4ff"/>
+      <rect x="34" y="80" width="120" height="10" rx="5" fill="#dfe4ff"/>
+      <rect x="34" y="100" width="80" height="10" rx="5" fill="#dfe4ff"/>
+      <text x="105" y="178" text-anchor="middle" font-size="20" font-weight="800" fill="#302A44">Site user</text>
+      <text x="105" y="206" text-anchor="middle" font-size="14" fill="#6b6680">Opens the page with</text>
+      <text x="105" y="226" text-anchor="middle" font-size="14" font-weight="700" fill="#6C5CE7">[outlook369]</text>
+      <text x="105" y="256" text-anchor="middle" font-size="14" fill="#6b6680">or asks Maylo AI</text>
+      <text x="105" y="276" text-anchor="middle" font-size="14" fill="#6b6680">in the chat</text>
+    </g>
+
+    <g transform="translate(320 120)">
+      <rect width="300" height="340" rx="22" fill="url(#architecture_g1)"/>
+      <text x="150" y="44" text-anchor="middle" font-size="21" font-weight="800" fill="#ffffff">Your WordPress site</text>
+      <rect x="22" y="66" width="256" height="112" rx="14" fill="#ffffff" fill-opacity="0.95"/>
+      <text x="150" y="98" text-anchor="middle" font-size="18" font-weight="800" fill="#302A44">Outlook 369</text>
+      <text x="150" y="124" text-anchor="middle" font-size="13.5" fill="#5b5470">Mail app · OAuth sign-in</text>
+      <text x="150" y="144" text-anchor="middle" font-size="13.5" fill="#5b5470">Encrypted tokens per user</text>
+      <text x="150" y="164" text-anchor="middle" font-size="13.5" fill="#5b5470">AI auto-reply worker</text>
+      <rect x="22" y="196" width="256" height="112" rx="14" fill="#ffffff" fill-opacity="0.95"/>
+      <text x="150" y="228" text-anchor="middle" font-size="18" font-weight="800" fill="#302A44">Maylo AI</text>
+      <text x="150" y="254" text-anchor="middle" font-size="13.5" fill="#5b5470">Writes replies with your prompt</text>
+      <text x="150" y="274" text-anchor="middle" font-size="13.5" fill="#5b5470">Email tools in chat &amp; voice</text>
+      <text x="150" y="294" text-anchor="middle" font-size="13.5" fill="#5b5470">Wallet billing</text>
+      <path d="M150 178 L150 196" stroke="#6C5CE7" stroke-width="3"/>
+    </g>
+
+    <g transform="translate(700 120)">
+      <rect width="210" height="150" rx="20" fill="#ffffff" stroke="#cfe0f7" stroke-width="2"/>
+      <circle cx="105" cy="46" r="24" fill="url(#architecture_g2)"/>
+      <path d="M93 46 L102 55 L118 38" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="105" y="96" text-anchor="middle" font-size="17" font-weight="800" fill="#0f3a6b">Microsoft identity</text>
+      <text x="105" y="118" text-anchor="middle" font-size="13" fill="#4a6385">login.microsoftonline.com</text>
+      <text x="105" y="136" text-anchor="middle" font-size="13" fill="#4a6385">Sign-in &amp; consent</text>
+    </g>
+
+    <g transform="translate(700 310)">
+      <rect width="210" height="150" rx="20" fill="#ffffff" stroke="#cfe0f7" stroke-width="2"/>
+      <rect x="80" y="22" width="50" height="50" rx="10" fill="url(#architecture_g2)"/>
+      <text x="105" y="56" text-anchor="middle" font-size="22" font-weight="800" fill="#ffffff">G</text>
+      <text x="105" y="100" text-anchor="middle" font-size="17" font-weight="800" fill="#0f3a6b">Microsoft Graph</text>
+      <text x="105" y="122" text-anchor="middle" font-size="13" fill="#4a6385">graph.microsoft.com/v1.0</text>
+      <text x="105" y="140" text-anchor="middle" font-size="13" fill="#4a6385">/me/messages · /sendMail</text>
+    </g>
+
+    <g transform="translate(970 230)">
+      <rect width="190" height="170" rx="20" fill="#0f6cbd"/>
+      <rect x="40" y="26" width="110" height="70" rx="10" fill="#ffffff"/>
+      <path d="M46 32 L95 70 L144 32" fill="none" stroke="#0f6cbd" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="95" y="128" text-anchor="middle" font-size="17" font-weight="800" fill="#ffffff">Outlook mailbox</text>
+      <text x="95" y="150" text-anchor="middle" font-size="12.5" fill="#d7e8fb">Exchange Online</text>
+    </g>
+  </g>
+
+  <g fill="none" stroke-width="3" stroke-linecap="round">
+    <path d="M252 290 L314 290" stroke="#6C5CE7" marker-end="url(#architecture_arr)"/>
+    <path d="M622 200 L694 200" stroke="#0f6cbd" marker-end="url(#architecture_arrb)" marker-start="url(#architecture_arrb)"/>
+    <path d="M622 380 L694 380" stroke="#0f6cbd" marker-end="url(#architecture_arrb)" marker-start="url(#architecture_arrb)"/>
+    <path d="M912 385 C950 385 950 330 964 322" stroke="#0f6cbd" marker-end="url(#architecture_arrb)" marker-start="url(#architecture_arrb)"/>
+  </g>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#5b5470">
+    <text x="658" y="186" text-anchor="middle">tokens</text>
+    <text x="658" y="366" text-anchor="middle">mail API</text>
+  </g>
+</svg>
+</div>
+  <ol class="steps">
+    <li>The user opens your mail page and clicks <b>Connect Outlook account</b>.</li>
+    <li>They sign in <b>on Microsoft's page</b> — your site never sees the password — and approve the permissions.</li>
+    <li>Microsoft returns a one-time code. Outlook 369 exchanges it for tokens using <b>OAuth 2.0 with PKCE</b> and stores them <b>encrypted</b> for that user.</li>
+    <li>The mail app, the AI assistant and Maylo AI then call <b>Microsoft Graph v1.0</b> for that user. Tokens refresh automatically.</li>
+  </ol>
+</section>
+
+<section id="requirements">
+  <h2><span class="num">✅</span>Before you start</h2>
+  <div class="table-wrap"><table>
+    <tr><th>You need</th><th>Notes</th></tr>
+    <tr><td>🌐 A WordPress site on HTTPS</td><td>WordPress 6.0+, PHP 7.4+ with the OpenSSL extension.</td></tr>
+    <tr><td>🔑 A Microsoft Entra (Azure) account</td><td>Free. Used once by the site owner to register the app.</td></tr>
+    <tr><td>📮 Users with a real Outlook mailbox</td><td>Outlook.com / Hotmail / Live accounts, or Microsoft 365 accounts with an Exchange Online license.</td></tr>
+    <tr><td>🤖 Maylo AI <span class="tag">optional</span></td><td>Needed for AI replies, auto-reply and the email tools in the chat.</td></tr>
+  </table></div>
+  <div class="figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 330" role="img" aria-label="Which Microsoft accounts have a mailbox">
+  <rect width="1200" height="330" rx="26" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="40" y="56" font-size="26" font-weight="800" fill="#302A44">Which account should I sign in with?</text>
+    <text x="40" y="86" font-size="16" fill="#6b6680">Signing in works with any Microsoft account — but only accounts with an Outlook mailbox can load email.</text>
+
+    <g transform="translate(40 116)">
+      <rect width="355" height="180" rx="20" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+      <circle cx="44" cy="44" r="22" fill="#10b981"/><path d="M33 44 l8 8 l14 -16" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="80" y="52" font-size="19" font-weight="800" fill="#065f46">Works</text>
+      <text x="26" y="96" font-size="15" fill="#065f46">• name@outlook.com / hotmail.com / live.com</text>
+      <text x="26" y="122" font-size="15" fill="#065f46">• Microsoft 365 work or school account</text>
+      <text x="26" y="144" font-size="15" fill="#065f46">  with an Exchange Online license</text>
+    </g>
+    <g transform="translate(422 116)">
+      <rect width="355" height="180" rx="20" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+      <circle cx="44" cy="44" r="22" fill="#ef4444"/><path d="M36 36 l16 16 M52 36 l-16 16" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+      <text x="80" y="52" font-size="19" font-weight="800" fill="#991b1b">No mailbox</text>
+      <text x="26" y="96" font-size="15" fill="#991b1b">• Guest accounts: name_gmail.com#EXT#@…</text>
+      <text x="26" y="122" font-size="15" fill="#991b1b">• Microsoft account made with a Gmail</text>
+      <text x="26" y="144" font-size="15" fill="#991b1b">  or other non-Outlook address</text>
+    </g>
+    <g transform="translate(804 116)">
+      <rect width="356" height="180" rx="20" fill="#eef2ff" stroke="#6C5CE7" stroke-width="2"/>
+      <circle cx="44" cy="44" r="22" fill="#6C5CE7"/><text x="44" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">i</text>
+      <text x="80" y="52" font-size="19" font-weight="800" fill="#302A44">Tell-tale errors</text>
+      <text x="26" y="96" font-size="14.5" fill="#4c3fb8" font-weight="700">OrganizationFromTenantGuidNotFound</text>
+      <text x="26" y="120" font-size="14.5" fill="#4c3fb8" font-weight="700">MailboxNotEnabledForRESTAPI</text>
+      <text x="26" y="150" font-size="14" fill="#5b5470">See them in Settings → Outlook 369</text>
+      <text x="26" y="170" font-size="14" fill="#5b5470">→ Connection diagnostics.</text>
+    </g>
+  </g>
+</svg>
+</div>
+  <div class="callout warn"><b>Azure account made with Gmail?</b>The directory Azure created for you has no mailbox. Signing in with it shows a name like <code>you_gmail.com#EXT#@yourname.onmicrosoft.com</code> and Microsoft answers <code>OrganizationFromTenantGuidNotFound</code>. Sign in with an @outlook.com (free) or Microsoft 365 mailbox instead.</div>
+</section>
+
+<section id="azure">
+  <h2><span class="num">1</span>Register the app in Microsoft Entra (Azure)</h2>
+  <div class="figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" role="img" aria-label="Six steps to register the app in Microsoft Entra">
+  <defs>
+    <linearGradient id="azuresetup_n" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6C5CE7"/><stop offset="1" stop-color="#5E8FF5"/></linearGradient>
+  </defs>
+  <rect width="1200" height="640" rx="26" fill="#f7f6ff"/>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="40" y="58" font-size="26" font-weight="800" fill="#302A44">Microsoft Entra (Azure) — app registration in 6 steps</text>
+    <text x="40" y="88" font-size="16" fill="#6b6680">entra.microsoft.com → Identity → Applications → App registrations</text>
+
+    <g transform="translate(40 120)">
+      <rect width="355" height="230" rx="20" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="url(#azuresetup_n)"/><text x="44" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">1</text>
+      <text x="82" y="52" font-size="19" font-weight="800" fill="#302A44">New registration</text>
+      <text x="26" y="98" font-size="14.5" fill="#5b5470">Click “+ New registration” and</text>
+      <text x="26" y="120" font-size="14.5" fill="#5b5470">give the app a name, e.g.</text>
+      <rect x="26" y="138" width="300" height="40" rx="10" fill="#eef2ff" stroke="#d6d6f3"/>
+      <text x="40" y="164" font-size="15" font-weight="700" fill="#4c3fb8">My Site Mail</text>
+      <text x="26" y="206" font-size="13" fill="#8a85a0">Users see this name on the consent screen.</text>
+    </g>
+
+    <g transform="translate(422 120)">
+      <rect width="355" height="230" rx="20" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="url(#azuresetup_n)"/><text x="44" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">2</text>
+      <text x="82" y="52" font-size="19" font-weight="800" fill="#302A44">Account types</text>
+      <rect x="26" y="80" width="300" height="56" rx="10" fill="#eef2ff" stroke="#6C5CE7" stroke-width="2"/>
+      <circle cx="46" cy="108" r="8" fill="#6C5CE7"/>
+      <text x="62" y="103" font-size="13.5" font-weight="700" fill="#302A44">Any organizational directory</text>
+      <text x="62" y="122" font-size="13.5" font-weight="700" fill="#302A44">and personal Microsoft accounts</text>
+      <text x="26" y="166" font-size="13.5" fill="#5b5470">Works for Outlook.com, Hotmail, Live</text>
+      <text x="26" y="186" font-size="13.5" fill="#5b5470">and Microsoft 365 work mailboxes.</text>
+      <text x="26" y="210" font-size="13" fill="#8a85a0">Use tenant “common” in the plugin.</text>
+    </g>
+
+    <g transform="translate(804 120)">
+      <rect width="355" height="230" rx="20" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="url(#azuresetup_n)"/><text x="44" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">3</text>
+      <text x="82" y="52" font-size="19" font-weight="800" fill="#302A44">Redirect URI (Web)</text>
+      <text x="26" y="98" font-size="14.5" fill="#5b5470">Platform: <tspan font-weight="800" fill="#302A44">Web</tspan>. Paste the URI shown in</text>
+      <text x="26" y="120" font-size="14.5" fill="#5b5470">Settings → Outlook 369:</text>
+      <rect x="26" y="138" width="300" height="40" rx="10" fill="#1e1b4b"/>
+      <text x="40" y="164" font-size="13.5" font-weight="700" fill="#a5f3fc">https://site.com/?outlook369=callback</text>
+      <text x="26" y="206" font-size="13" fill="#8a85a0">Must match exactly, character by character.</text>
+    </g>
+
+    <g transform="translate(40 378)">
+      <rect width="355" height="230" rx="20" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="url(#azuresetup_n)"/><text x="44" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">4</text>
+      <text x="82" y="52" font-size="19" font-weight="800" fill="#302A44">Client secret</text>
+      <text x="26" y="98" font-size="14.5" fill="#5b5470">Certificates &amp; secrets → New client</text>
+      <text x="26" y="120" font-size="14.5" fill="#5b5470">secret. Copy the <tspan font-weight="800" fill="#302A44">Value</tspan> column:</text>
+      <rect x="26" y="138" width="145" height="40" rx="10" fill="#d1fae5" stroke="#10b981"/>
+      <text x="98" y="164" text-anchor="middle" font-size="14" font-weight="800" fill="#047857">Value ✓</text>
+      <rect x="181" y="138" width="145" height="40" rx="10" fill="#fee2e2" stroke="#ef4444"/>
+      <text x="253" y="164" text-anchor="middle" font-size="14" font-weight="800" fill="#b91c1c">Secret ID ✗</text>
+      <text x="26" y="206" font-size="13" fill="#8a85a0">It is shown only once — copy it right away.</text>
+    </g>
+
+    <g transform="translate(422 378)">
+      <rect width="355" height="230" rx="20" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="url(#azuresetup_n)"/><text x="44" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">5</text>
+      <text x="82" y="52" font-size="19" font-weight="800" fill="#302A44">API permissions</text>
+      <text x="26" y="94" font-size="14" fill="#5b5470">Microsoft Graph → Delegated:</text>
+      <g font-size="13.5" font-weight="700">
+        <rect x="26" y="108" width="140" height="32" rx="16" fill="#eef2ff"/><text x="96" y="129" text-anchor="middle" fill="#4c3fb8">User.Read</text>
+        <rect x="176" y="108" width="150" height="32" rx="16" fill="#eef2ff"/><text x="251" y="129" text-anchor="middle" fill="#4c3fb8">Mail.ReadWrite</text>
+        <rect x="26" y="148" width="140" height="32" rx="16" fill="#eef2ff"/><text x="96" y="169" text-anchor="middle" fill="#4c3fb8">Mail.Send</text>
+        <rect x="176" y="148" width="150" height="32" rx="16" fill="#eef2ff"/><text x="251" y="169" text-anchor="middle" fill="#4c3fb8">offline_access</text>
+      </g>
+      <text x="26" y="208" font-size="13" fill="#8a85a0">Then “Grant admin consent” (work tenants).</text>
+    </g>
+
+    <g transform="translate(804 378)">
+      <rect width="355" height="230" rx="20" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="url(#azuresetup_n)"/><text x="44" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">6</text>
+      <text x="82" y="52" font-size="19" font-weight="800" fill="#302A44">Copy the client ID</text>
+      <text x="26" y="98" font-size="14.5" fill="#5b5470">Overview → Application (client) ID</text>
+      <rect x="26" y="116" width="300" height="40" rx="10" fill="#eef2ff" stroke="#d6d6f3"/>
+      <text x="40" y="142" font-size="13.5" font-weight="700" fill="#4c3fb8">00000000-0000-0000-0000-000000000000</text>
+      <text x="26" y="186" font-size="14" fill="#5b5470">Paste it with the secret into</text>
+      <text x="26" y="206" font-size="14" font-weight="800" fill="#302A44">WordPress → Settings → Outlook 369</text>
+    </g>
+  </g>
+</svg>
+</div>
+  <ol class="steps">
+    <li>Open <a href="https://entra.microsoft.com" target="_blank" rel="noopener">entra.microsoft.com</a> → <b>Identity</b> → <b>Applications</b> → <b>App registrations</b> → <b>+ New registration</b>.</li>
+    <li><b>Name:</b> something your users will recognize, e.g. <code>My Site Mail</code>.</li>
+    <li><b>Supported account types:</b> “Accounts in any organizational directory and personal Microsoft accounts”.</li>
+    <li><b>Redirect URI:</b> platform <b>Web</b>, value = the URI shown in <b>WordPress → Settings → Outlook 369</b> (default <code>https://your-site.com/?outlook369=callback</code>). Click <b>Register</b>.</li>
+    <li><b>Certificates &amp; secrets</b> → <b>+ New client secret</b> → copy the <b>Value</b> column immediately (not the Secret ID).</li>
+    <li><b>API permissions</b> → <b>+ Add a permission</b> → <b>Microsoft Graph</b> → <b>Delegated</b>: <span class="tag">User.Read</span><span class="tag">Mail.ReadWrite</span><span class="tag">Mail.Send</span><span class="tag">offline_access</span> (plus openid, profile, email). In a work tenant click <b>Grant admin consent</b>.</li>
+    <li><b>Overview</b> → copy the <b>Application (client) ID</b>.</li>
+  </ol>
+  <div class="callout info"><b>Exact match required</b>The redirect URI must match character by character — <code>https</code>, the trailing <code>/</code> and <code>?outlook369=callback</code>. A mismatch causes <code>invalid_request</code> / <code>AADSTS50011</code>.</div>
+</section>
+
+<section id="wordpress">
+  <h2><span class="num">2</span>Configure WordPress</h2>
+  <div class="table-wrap"><table>
+    <tr><th>Field in Settings → Outlook 369</th><th>What to enter</th></tr>
+    <tr><td><b>Application (client) ID</b></td><td>The ID from the app's Overview page.</td></tr>
+    <tr><td><b>Client secret</b></td><td>The secret <b>Value</b> (stored encrypted with AES-256-GCM).</td></tr>
+    <tr><td><b>Directory (tenant)</b></td><td><code>common</code> — personal and work accounts (recommended) · <code>consumers</code> — only Outlook.com · <code>organizations</code> or a tenant ID — only work accounts.</td></tr>
+    <tr><td><b>Who can use the mailbox</b></td><td>Any logged-in user, or only users with a specific capability.</td></tr>
+    <tr><td><b>Sending, images, attachments</b></td><td>Your preferences. Attachments up to 3 MB per message.</td></tr>
+  </table></div>
+  <p>Then place the shortcode on any page, for example inside your user panel:</p>
+  <pre><code>[outlook369 title="My Mail" height="760"]</code></pre>
+  <details><summary>Keep the secret in wp-config.php instead</summary>
+  <pre><code>define( 'OUTLOOK369_CLIENT_ID', '00000000-0000-0000-0000-000000000000' );
+define( 'OUTLOOK369_CLIENT_SECRET', 'your-secret-value' );
+define( 'OUTLOOK369_TENANT', 'common' );</code></pre></details>
+</section>
+
+<section id="connect">
+  <h2><span class="num">3</span>Users connect their mailbox</h2>
+  <div class="figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="What a user does to connect their mailbox">
+  <defs>
+    <linearGradient id="connectflow_c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6C5CE7"/><stop offset="1" stop-color="#5E8FF5"/></linearGradient>
+    <marker id="connectflow_a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#a5b4fc"/></marker>
+  </defs>
+  <rect width="1200" height="360" rx="26" fill="#ffffff" stroke="#e2dfdc" stroke-width="2"/>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="40" y="56" font-size="26" font-weight="800" fill="#302A44">Connecting a mailbox takes one click</text>
+    <text x="40" y="86" font-size="16" fill="#6b6680">Each WordPress user connects their own Outlook account. Nobody else can read it.</text>
+
+    <g transform="translate(40 120)">
+      <rect width="250" height="200" rx="20" fill="#f7f6ff"/>
+      <circle cx="125" cy="50" r="30" fill="url(#connectflow_c)"/>
+      <path d="M110 50 h30 M125 35 v30" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+      <text x="125" y="112" text-anchor="middle" font-size="18" font-weight="800" fill="#302A44">1 · Click Connect</text>
+      <text x="125" y="140" text-anchor="middle" font-size="14" fill="#5b5470">“Connect Outlook account”</text>
+      <text x="125" y="160" text-anchor="middle" font-size="14" fill="#5b5470">on the mail page</text>
+    </g>
+    <g transform="translate(330 120)">
+      <rect width="250" height="200" rx="20" fill="#f0f7ff"/>
+      <circle cx="125" cy="50" r="30" fill="#0f6cbd"/>
+      <circle cx="125" cy="44" r="9" fill="#fff"/><path d="M108 66 a17 13 0 0 1 34 0" fill="#fff"/>
+      <text x="125" y="112" text-anchor="middle" font-size="18" font-weight="800" fill="#0f3a6b">2 · Pick account</text>
+      <text x="125" y="140" text-anchor="middle" font-size="14" fill="#4a6385">Sign in at Microsoft and</text>
+      <text x="125" y="160" text-anchor="middle" font-size="14" fill="#4a6385">choose the mailbox</text>
+    </g>
+    <g transform="translate(620 120)">
+      <rect width="250" height="200" rx="20" fill="#f0f7ff"/>
+      <circle cx="125" cy="50" r="30" fill="#0f6cbd"/>
+      <path d="M111 50 l10 10 l18 -20" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="125" y="112" text-anchor="middle" font-size="18" font-weight="800" fill="#0f3a6b">3 · Accept</text>
+      <text x="125" y="140" text-anchor="middle" font-size="14" fill="#4a6385">Approve read, send and</text>
+      <text x="125" y="160" text-anchor="middle" font-size="14" fill="#4a6385">profile permissions</text>
+    </g>
+    <g transform="translate(910 120)">
+      <rect width="250" height="200" rx="20" fill="#ecfdf5"/>
+      <circle cx="125" cy="50" r="30" fill="#10b981"/>
+      <rect x="108" y="38" width="34" height="24" rx="4" fill="#fff"/><path d="M110 40 L125 52 L140 40" stroke="#10b981" stroke-width="3" fill="none"/>
+      <text x="125" y="112" text-anchor="middle" font-size="18" font-weight="800" fill="#065f46">4 · Inbox loads</text>
+      <text x="125" y="140" text-anchor="middle" font-size="14" fill="#047857">Back on your site with</text>
+      <text x="125" y="160" text-anchor="middle" font-size="14" fill="#047857">your live mailbox</text>
+    </g>
+  </g>
+  <g stroke="#a5b4fc" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M292 220 L326 220" marker-end="url(#connectflow_a)"/>
+    <path d="M582 220 L616 220" marker-end="url(#connectflow_a)"/>
+    <path d="M872 220 L906 220" marker-end="url(#connectflow_a)"/>
+  </g>
+</svg>
+</div>
+  <p>The inbox loads on your site right away. Users can disconnect at any time from the bottom of the folder list; their tokens are deleted immediately.</p>
+  <div class="callout ok"><b>Tip</b>If the wrong Microsoft account was used, the mail page offers <b>Use a different Microsoft account</b>, which disconnects and opens the account picker again.</div>
+</section>
+
+<section id="mailapp">
+  <h2><span class="num">🗂️</span>Using the mail app</h2>
+  <div class="table-wrap"><table>
+    <tr><th>Feature</th><th>Details</th></tr>
+    <tr><td>📁 Folders</td><td>Inbox, Drafts, Sent, Archive, Deleted, Junk and custom folders, with unread counts.</td></tr>
+    <tr><td>🔎 Search</td><td>Searches the whole mailbox.</td></tr>
+    <tr><td>↩️ Reply</td><td>Real threaded replies — the original is quoted and the conversation stays together.</td></tr>
+    <tr><td>✨ AI reply</td><td>Writes a reply with your prompt and opens it for editing.</td></tr>
+    <tr><td>⭐ Flag · 🗄️ Archive · 🗑️ Delete</td><td>Delete moves the message to Deleted Items.</td></tr>
+    <tr><td>📎 Attachments</td><td>Download received files; attach up to 3 MB when sending.</td></tr>
+    <tr><td>🖼️ Images</td><td>Remote images are blocked until you click <b>Load images</b>.</td></tr>
+    <tr><td>📱 Mobile</td><td>Folder drawer, full-screen reader and compose.</td></tr>
+  </table></div>
+</section>
+
+<section id="ai">
+  <h2><span class="num">🤖</span>AI replies and auto-reply</h2>
+  <div class="figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-label="How AI auto-reply works">
+  <defs>
+    <linearGradient id="aiautoreply_ai" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6C5CE7"/><stop offset="1" stop-color="#a855f7"/></linearGradient>
+    <marker id="aiautoreply_m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#8175EA"/></marker>
+  </defs>
+  <rect width="1200" height="420" rx="26" fill="#1e1b4b"/>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="40" y="58" font-size="26" font-weight="800" fill="#ffffff">AI auto-reply, driven by your own prompt</text>
+    <text x="40" y="88" font-size="16" fill="#c7c3ee">Checked every 5 minutes · only new unread Inbox mail · daily limit · full activity log</text>
+
+    <g transform="translate(40 130)">
+      <rect width="190" height="200" rx="18" fill="#2b2770" stroke="#4b45a8"/>
+      <rect x="55" y="28" width="80" height="56" rx="8" fill="#ffffff"/>
+      <path d="M59 32 L95 60 L131 32" stroke="#6C5CE7" stroke-width="5" fill="none" stroke-linejoin="round"/>
+      <circle cx="132" cy="30" r="12" fill="#ef4444"/>
+      <text x="95" y="122" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">New email</text>
+      <text x="95" y="148" text-anchor="middle" font-size="13.5" fill="#c7c3ee">arrives in Inbox</text>
+      <text x="95" y="168" text-anchor="middle" font-size="13.5" fill="#c7c3ee">after you turned it on</text>
+    </g>
+    <g transform="translate(270 130)">
+      <rect width="190" height="200" rx="18" fill="#2b2770" stroke="#4b45a8"/>
+      <path d="M60 30 h70 l-26 30 v26 l-18 -10 v-16 Z" fill="#a5b4fc"/>
+      <text x="95" y="122" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">Filters</text>
+      <text x="95" y="148" text-anchor="middle" font-size="13.5" fill="#c7c3ee">Focused inbox only</text>
+      <text x="95" y="168" text-anchor="middle" font-size="13.5" fill="#c7c3ee">skip no-reply &amp; newsletters</text>
+    </g>
+    <g transform="translate(500 120)">
+      <rect width="220" height="220" rx="20" fill="url(#aiautoreply_ai)"/>
+      <path d="M110 30 l9 23 l23 9 l-23 9 l-9 23 l-9 -23 l-23 -9 l23 -9 Z" fill="#ffffff"/>
+      <text x="110" y="132" text-anchor="middle" font-size="19" font-weight="800" fill="#ffffff">Maylo AI writes</text>
+      <text x="110" y="158" text-anchor="middle" font-size="13.5" fill="#f3e8ff">using YOUR prompt</text>
+      <text x="110" y="178" text-anchor="middle" font-size="13.5" fill="#f3e8ff">+ signature, same language</text>
+      <text x="110" y="198" text-anchor="middle" font-size="13.5" fill="#f3e8ff">“NO_REPLY” = skip</text>
+    </g>
+    <g transform="translate(760 108)">
+      <rect width="190" height="112" rx="18" fill="#3b2f0a" stroke="#f59e0b"/>
+      <text x="95" y="46" text-anchor="middle" font-size="18" font-weight="800" fill="#fde68a">Draft mode</text>
+      <text x="95" y="72" text-anchor="middle" font-size="13.5" fill="#fcd34d">saved in Drafts</text>
+      <text x="95" y="92" text-anchor="middle" font-size="13.5" fill="#fcd34d">you review &amp; send</text>
+    </g>
+    <g transform="translate(760 240)">
+      <rect width="190" height="112" rx="18" fill="#063b2b" stroke="#10b981"/>
+      <text x="95" y="46" text-anchor="middle" font-size="18" font-weight="800" fill="#a7f3d0">Send mode</text>
+      <text x="95" y="72" text-anchor="middle" font-size="13.5" fill="#6ee7b7">threaded reply sent</text>
+      <text x="95" y="92" text-anchor="middle" font-size="13.5" fill="#6ee7b7">original marked read</text>
+    </g>
+    <g transform="translate(990 130)">
+      <rect width="170" height="200" rx="18" fill="#2b2770" stroke="#4b45a8"/>
+      <rect x="40" y="30" width="90" height="10" rx="5" fill="#a5b4fc"/>
+      <rect x="40" y="50" width="70" height="10" rx="5" fill="#6366f1"/>
+      <rect x="40" y="70" width="80" height="10" rx="5" fill="#a5b4fc"/>
+      <text x="85" y="122" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff">Activity log</text>
+      <text x="85" y="148" text-anchor="middle" font-size="13.5" fill="#c7c3ee">sent · draft ·</text>
+      <text x="85" y="168" text-anchor="middle" font-size="13.5" fill="#c7c3ee">skipped · error</text>
+    </g>
+  </g>
+  <g stroke="#8175EA" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M232 230 L264 230" marker-end="url(#aiautoreply_m)"/>
+    <path d="M462 230 L494 230" marker-end="url(#aiautoreply_m)"/>
+    <path d="M722 210 C740 200 742 170 754 166" marker-end="url(#aiautoreply_m)"/>
+    <path d="M722 250 C740 262 742 292 754 296" marker-end="url(#aiautoreply_m)"/>
+    <path d="M952 166 C970 170 972 200 984 210" marker-end="url(#aiautoreply_m)"/>
+    <path d="M952 296 C970 292 972 262 984 250" marker-end="url(#aiautoreply_m)"/>
+  </g>
+</svg>
+</div>
+  <h3>✨ AI reply button</h3>
+  <p>Open any email and press ✨. The AI writes a reply in the sender's language using your prompt and signature, then opens it in the compose window so you can edit and send it.</p>
+  <h3>✨ AI panel (top bar)</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Setting</th><th>What it does</th></tr>
+    <tr><td><b>Automatic smart replies</b></td><td>On / off. Only emails that arrive after you turn it on are answered.</td></tr>
+    <tr><td><b>When AI writes a reply</b></td><td><b>Draft</b> — saved in Drafts for review (default) · <b>Send</b> — sent automatically (asks for confirmation when enabled).</td></tr>
+    <tr><td><b>Your reply prompt</b></td><td>How to answer: your business, tone, what to offer, what never to promise.</td></tr>
+    <tr><td><b>Signature</b></td><td>Added to every AI reply.</td></tr>
+    <tr><td><b>Max replies per day</b></td><td>Safety limit, default 20.</td></tr>
+    <tr><td><b>Focused inbox only · Skip no-reply senders</b></td><td>Keeps newsletters and notifications out.</td></tr>
+    <tr><td><b>AI activity</b></td><td>Log of every sent, draft, skipped and error item with the reason.</td></tr>
+  </table></div>
+  <details open><summary>Example prompt</summary>
+  <pre><code>You are the assistant of Virtual Copilot, an AI automation agency in the Netherlands.
+Answer in a short, warm and professional tone. For new leads, thank them and offer a
+free 15-minute discovery call. Never quote prices or deadlines; say we will follow up.
+If someone asks for support, ask for their order number.</code></pre></details>
+  <div class="callout info"><b>Runs every 5 minutes</b>Auto-reply uses WP-Cron (max 5 emails per run). For reliable timing add a server cron job:</div>
+  <pre><code>*/5 * * * * wget -q -O - https://your-site.com/wp-cron.php?doing_wp_cron &gt;/dev/null 2&gt;&amp;1</code></pre>
+  <p>AI replies are written by <b>Maylo AI</b> and charged to the user's wallet like any other Maylo AI request.</p>
+</section>
+
+<section id="maylo">
+  <h2><span class="num">💬</span>Use your email from the Maylo AI chat</h2>
+  <p>When Outlook 369 and <a href="https://github.com/deveguru/maylo-ai" target="_blank" rel="noopener">Maylo AI</a> are both active, the assistant gets these tools:</p>
+  <div class="table-wrap"><table>
+    <tr><th>Tool</th><th>Try saying</th></tr>
+    <tr><td><code>list_emails</code></td><td>“What new emails do I have?” · “Find the email from Sara about the invoice”</td></tr>
+    <tr><td><code>read_email</code></td><td>“Read it and summarize in three bullet points”</td></tr>
+    <tr><td><code>draft_email_reply</code></td><td>“Write a polite reply and save it as a draft”</td></tr>
+    <tr><td><code>reply_email</code></td><td>“Reply that we can meet on Tuesday at 10 — send it”</td></tr>
+    <tr><td><code>send_email</code></td><td>“Email ali@example.com the weekly report”</td></tr>
+    <tr><td><code>email_auto_reply</code></td><td>“Turn on auto-reply in draft mode with this prompt: …”</td></tr>
+  </table></div>
+  <div class="callout err"><b>Nothing is sent without you</b>Before <code>send_email</code> or <code>reply_email</code> the assistant shows the recipients and final text and asks for confirmation, unless you clearly say “send it directly”. In live voice, “any new emails?” is answered out loud; sending switches to the chat to finish.</div>
+</section>
+
+<section id="security">
+  <h2><span class="num">🔐</span>Security and privacy</h2>
+  <div class="cards">
+    <div class="card"><div class="ic">🔑</div><h4>Sign-in</h4><p>Microsoft identity platform, authorization code flow with PKCE and a one-time state.</p></div>
+    <div class="card"><div class="ic">🗝️</div><h4>Tokens</h4><p>Encrypted per user with AES-256-GCM, key derived from your WordPress salts.</p></div>
+    <div class="card"><div class="ic">📭</div><h4>Mail data</h4><p>Fetched live from Microsoft Graph, never stored in the WordPress database.</p></div>
+    <div class="card"><div class="ic">🧱</div><h4>Email display</h4><p>Sandboxed iframe with a strict Content-Security-Policy; scripts, forms and frames removed.</p></div>
+    <div class="card"><div class="ic">🖼️</div><h4>Tracking pixels</h4><p>Remote images blocked by default.</p></div>
+    <div class="card"><div class="ic">🚪</div><h4>Disconnect</h4><p>Deletes the user's tokens immediately; deleting a WordPress user deletes theirs too.</p></div>
+  </div>
+</section>
+
+<section id="troubleshooting">
+  <h2><span class="num">🩺</span>Troubleshooting</h2>
+  <div class="callout info"><b>Start here</b>Open <b>Settings → Outlook 369 → Connection diagnostics</b>. It lists the last 30 attempts with the Microsoft account used, its type (personal / work / guest), the tenant that signed it in and Microsoft's exact error.</div>
+  <div class="table-wrap"><table>
+    <tr><th>You see</th><th>Cause</th><th>Fix</th></tr>
+    <tr><td><code>invalid_request</code> / <code>AADSTS50011</code></td><td>Redirect URI mismatch</td><td>Copy the URI from the plugin settings into Entra → Authentication → Web.</td></tr>
+    <tr><td><code>AADSTS7000215</code> invalid client secret</td><td>The Secret ID was pasted, or the secret expired</td><td>Create a new secret and paste its Value.</td></tr>
+    <tr><td><code>AADSTS50020</code> account does not exist in tenant</td><td>Tenant set to one directory</td><td>Set the tenant to <code>common</code>.</td></tr>
+    <tr><td><code>…#EXT#@….onmicrosoft.com</code> · <code>OrganizationFromTenantGuidNotFound</code></td><td>Guest account in a directory with no Exchange Online</td><td>Sign in with an Outlook.com or Microsoft 365 mailbox.</td></tr>
+    <tr><td><code>MailboxNotEnabledForRESTAPI</code></td><td>Microsoft account created with Gmail or another address — no Outlook mailbox</td><td>Use or create an @outlook.com address.</td></tr>
+    <tr><td>“Need admin approval”</td><td>Work tenant blocks user consent</td><td>An admin clicks Grant admin consent in API permissions.</td></tr>
+    <tr><td>“Microsoft is temporarily limiting requests”</td><td>Throttling (HTTP 429)</td><td>Wait the seconds shown and try again.</td></tr>
+    <tr><td>Auto-reply does nothing</td><td>WP-Cron not running, Maylo AI inactive or wallet empty</td><td>Add the server cron, activate Maylo AI, check the AI activity log.</td></tr>
+  </table></div>
+</section>
+
+<section id="faq">
+  <h2><span class="num">❓</span>FAQ</h2>
+  <details><summary>Does the site see my Microsoft password?</summary><p>No. You sign in on Microsoft's own page; the site only receives tokens that it stores encrypted.</p></details>
+  <details><summary>Can one user read another user's mail?</summary><p>No. Every token belongs to one WordPress user and is checked on every request.</p></details>
+  <details><summary>Is my email copied into WordPress?</summary><p>No. Messages and attachments are fetched live from Microsoft each time. Only the AI activity log keeps a short note of what was answered.</p></details>
+  <details><summary>Does it work with Gmail?</summary><p>This plugin is for Outlook / Microsoft 365. Gmail is handled by Google services in the VirtualCopilot user panel.</p></details>
+  <details><summary>Will the AI reply to newsletters or no-reply senders?</summary><p>No — they are skipped by default, and the AI itself can decide an email needs no reply.</p></details>
+  <details><summary>How do I stop everything?</summary><p>Turn off auto-reply in the ✨ panel, or click Disconnect. Disconnecting deletes the stored tokens.</p></details>
+</section>
+
+<section id="developers">
+  <h2><span class="num">🧑‍💻</span>For developers</h2>
+  <h3>PHP API (used by Maylo AI)</h3>
+  <pre><code>$o = Outlook_369::instance();
+
+$o-&gt;api_is_connected( $user_id );                                   // bool
+$o-&gt;api_status( $user_id );                                         // account + auto-reply state
+$o-&gt;api_list( $user_id, array( 'folder' =&gt; 'inbox', 'unread_only' =&gt; true, 'limit' =&gt; 10 ) );
+$o-&gt;api_get( $user_id, $message_id );                               // full message, body as text
+$o-&gt;api_send( $user_id, array( 'to' =&gt; 'a@b.com', 'subject' =&gt; 'Hi', 'body' =&gt; 'Text' ) );
+$o-&gt;api_reply( $user_id, $message_id, 'Text', array( 'reply_all' =&gt; false, 'draft' =&gt; false ) );
+$o-&gt;ai_draft_for( $user_id, $message_id, 'optional instruction' );  // AI reply text + html
+$o-&gt;ai_settings( $user_id );
+$o-&gt;ai_save_settings( $user_id, array( 'auto' =&gt; true, 'mode' =&gt; 'draft' ) );</code></pre>
+  <p>All methods return arrays or a <code>WP_Error</code>.</p>
+  <h3>Hooks</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Hook</th><th>Type</th><th>Arguments</th></tr>
+    <tr><td><code>outlook369_connected</code></td><td>action</td><td><code>$user_id, $account</code> after a successful connection</td></tr>
+    <tr><td><code>outlook369_disconnected</code></td><td>action</td><td><code>$user_id</code></td></tr>
+    <tr><td><code>outlook369_scopes</code></td><td>filter</td><td>Change the requested Microsoft Graph scopes</td></tr>
+  </table></div>
+  <h3>Changelog</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Version</th><th>Changes</th></tr>
+    <tr><td><b>1.1.0</b></td><td>AI reply button, prompt-driven auto-reply (draft / send), AI activity log, real threaded replies, public PHP API, Maylo AI email tools.</td></tr>
+    <tr><td><b>1.0.5</b></td><td>Microsoft's real error codes shown, account-type detection, connection diagnostics log, “use a different account”.</td></tr>
+    <tr><td><b>1.0.4</b></td><td>Fixed stored connection not being read back; folder list uses Graph v1.0 properties only.</td></tr>
+  </table></div>
+</section>
+
+<div class="credits">
+  <div class="figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 150" role="img" aria-label="Developed by alirezafatemi.ir and 369web.ir">
+  <defs>
+    <linearGradient id="footer_f" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2a1f6e"/><stop offset="0.6" stop-color="#4b3bc4"/><stop offset="1" stop-color="#2f6fe0"/></linearGradient>
+  </defs>
+  <rect width="1200" height="150" rx="26" fill="url(#footer_f)"/>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" fill="#ffffff" text-anchor="middle">
+    <text x="600" y="62" font-size="16" font-weight="700" letter-spacing="4" fill-opacity="0.75">DEVELOPED BY</text>
+    <text x="600" y="106" font-size="34" font-weight="800">alirezafatemi.ir  ·  369web.ir</text>
+  </g>
+</svg>
+</div>
+  <p>Developed by <a href="https://alirezafatemi.ir" target="_blank" rel="noopener">alirezafatemi.ir</a> · <a href="https://369web.ir" target="_blank" rel="noopener">369web.ir</a></p>
+</div>
+</main>
+</div>
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  document.getElementById('menuBtn').addEventListener('click', function(){ toc.classList.toggle('open'); });
+  toc.addEventListener('click', function(e){ if (e.target.closest('a')) toc.classList.remove('open'); });
+  var root = document.documentElement;
+  try { var saved = localStorage.getItem('o369-doc-theme'); if (saved) root.setAttribute('data-theme', saved); } catch(e){}
+  document.getElementById('themeBtn').addEventListener('click', function(){
+    var dark = root.getAttribute('data-theme') === 'dark' || (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = dark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('o369-doc-theme', next); } catch(e){}
+  });
+  document.querySelectorAll('pre').forEach(function(pre){
+    var b = document.createElement('button');
+    b.className = 'copy'; b.type = 'button'; b.textContent = 'Copy';
+    b.addEventListener('click', function(){
+      var text = pre.querySelector('code').innerText;
+      (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(function(){ b.textContent = 'Copied'; setTimeout(function(){ b.textContent = 'Copy'; }, 1400); }, function(){});
+    });
+    pre.appendChild(b);
+  });
+  var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); });
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    document.querySelectorAll('main section[id]').forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
